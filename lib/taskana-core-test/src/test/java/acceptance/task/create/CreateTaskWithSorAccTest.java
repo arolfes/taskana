@@ -64,6 +64,46 @@ class CreateTaskWithSorAccTest {
 
   @WithAccessId(user = "user-1-1")
   @Test
+  void should_createTask_when_Taskname_is_255_chars_long() throws Exception {
+    String expectedName =
+        "Das sind genau 255 Zeichen abcdefghiklnopqrstuvwxyz123456789 "
+            + "abcdefghiklnopqrstuvwxyz123456789 abcdefghiklnopqrstuvwxyz123456789 "
+            + "abcdefghiklnopqrstuvwxyz123456789 abcdefghiklnopqrstuvwxyz123456789 "
+            + "abcdefghiklnopqrstuvwxyz123456789  abcdefghiklnopqrstuvwxy";
+    assertThat(expectedName.length()).isEqualTo(255);
+
+    Task task = taskService.newTask(defaultWorkbasketSummary.getId());
+    task.setName(expectedName);
+    task.setClassificationKey(defaultClassificationSummary.getKey());
+    task.setPrimaryObjRef(defaultObjectReference);
+
+    Task actualTask = taskService.createTask(task);
+
+    assertThat(actualTask.getName()).isEqualTo(expectedName);
+  }
+
+  @WithAccessId(user = "user-1-1")
+  @Test
+  void should_createTask_when_Taskname_is_255_chars_long_and_one_char_is_umlaut() throws Exception {
+    String expectedName =
+        "Das sind genau 255 Zeichen mit einem Umlaut ÄÖÜß abcdefghiklnopqrstuvwxyz123456789 "
+            + "abcdefghiklnopqrstuvwxyz123456789 abcdefghiklnopqrstuvwxyz123456789 "
+            + "abcdefghiklnopqrstuvwxyz123456789 abcdefghiklnopqrstuvwxyz123456789 "
+            + "abcdefghiklnopqrstuvwxyz123456789  a";
+    assertThat(expectedName.length()).isEqualTo(255);
+
+    Task task = taskService.newTask(defaultWorkbasketSummary.getId());
+    task.setName(expectedName);
+    task.setClassificationKey(defaultClassificationSummary.getKey());
+    task.setPrimaryObjRef(defaultObjectReference);
+
+    Task actualTask = taskService.createTask(task);
+
+    assertThat(actualTask.getName()).isEqualTo(expectedName);
+  }
+
+  @WithAccessId(user = "user-1-1")
+  @Test
   void should_createObjectReferences_When_CreatingTask() throws Exception {
     Task task = taskService.newTask(defaultWorkbasketSummary.getId());
     task.setClassificationKey(defaultClassificationSummary.getKey());

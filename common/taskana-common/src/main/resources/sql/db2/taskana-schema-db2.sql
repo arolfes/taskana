@@ -75,7 +75,7 @@ CREATE TABLE TASK
     RECEIVED                   TIMESTAMP NULL,
     PLANNED                    TIMESTAMP NULL,
     DUE                        TIMESTAMP NULL,
-    NAME                       VARCHAR(255) NULL,
+    NAME                       VARCHAR(255 CODEUNITS32) NULL,
     CREATOR                    VARCHAR(32) NULL,
     DESCRIPTION                VARCHAR(1024) NULL,
     NOTE                       VARCHAR(4096) NULL,
