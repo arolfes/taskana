@@ -24,6 +24,5 @@
     <module>taskana-spring-example</module>
     <module>taskana-test-api</module>
     <module>taskana-core-test</module>
-
   </modules>
 </project>

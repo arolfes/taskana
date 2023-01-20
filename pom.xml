@@ -75,9 +75,9 @@
     <version.camunda.dmn>7.18.0</version.camunda.dmn>
 
     <!-- java ee dependencies -->
-    <version.resteasy>5.0.1.Final</version.resteasy>
+    <version.resteasy>6.2.2.Final</version.resteasy>
     <version.thorntail>2.7.0.Final</version.thorntail>
-    <version.javaee-api>8.0.1</version.javaee-api>
+    <version.jakartaee-api>10.0.0</version.jakartaee-api>
     <version.javax.servlet>4.0.1</version.javax.servlet>
     <version.arquillian>1.5.0.Final</version.arquillian>
     <version.arquillian.managed.wildfly>3.0.1.Final</version.arquillian.managed.wildfly>
