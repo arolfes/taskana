@@ -43,6 +43,15 @@ public class TaskanaProducersTest {
     int resultCount = 0;
     try (Connection conn = getConnection()) {
       try (Statement statement = conn.createStatement()) {
+        ResultSet rsSchemas = statement.executeQuery("SHOW SCHEMAS");
+        while (rsSchemas.next()) {
+          System.out.println(rsSchemas.getString("SCHEMA_NAME"));
+        }
+        ResultSet rsTables = statement.executeQuery("SHOW TABLES");
+        while (rsTables.next()) {
+          System.out.println(
+              rsTables.getString("TABLE_NAME") + " " + rsTables.getString("TABLE_SCHEMA"));
+        }
         ResultSet rs = statement.executeQuery("SELECT ID, OWNER FROM TASKANA.TASK");
 
         while (rs.next()) {
