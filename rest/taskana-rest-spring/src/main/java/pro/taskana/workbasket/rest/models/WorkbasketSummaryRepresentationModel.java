@@ -1,5 +1,6 @@
 package pro.taskana.workbasket.rest.models;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.hateoas.RepresentationModel;
 import pro.taskana.workbasket.api.WorkbasketType;
 import pro.taskana.workbasket.api.models.WorkbasketSummary;
@@ -9,12 +10,16 @@ public class WorkbasketSummaryRepresentationModel
     extends RepresentationModel<WorkbasketSummaryRepresentationModel> {
 
   /** Unique Id. */
+  @Schema(name = "workbasketId", description = "Unique Id.")
   protected String workbasketId;
   /** the professional key for the workbasket. */
+  @Schema(name = "key", description = "the professional key for the workbasket.")
   protected String key;
   /** The name of the workbasket. */
+  @Schema(name = "name", description = "The name of the workbasket.")
   protected String name;
   /** The domain the workbasket belongs to. */
+  @Schema(name = "domain", description = "The domain the workbasket belongs to.")
   protected String domain;
   /** The type of the workbasket. */
   protected WorkbasketType type;

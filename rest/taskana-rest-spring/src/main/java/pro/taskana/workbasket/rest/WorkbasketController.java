@@ -1,5 +1,11 @@
 package pro.taskana.workbasket.rest;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.servlet.http.HttpServletRequest;
 import java.beans.ConstructorProperties;
 import java.util.List;
@@ -89,6 +95,22 @@ public class WorkbasketController {
    * @param pagingParameter the paging parameters
    * @return the Workbaskets with the given filter, sort and paging options.
    */
+  @Operation(
+      summary = "Get a list of all Workbaskets",
+      description =
+          "This endpoint retrieves a list of existing Workbaskets. Filters can be applied.")
+  @ApiResponses(
+      value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Found all Workbaskets",
+            content = {
+              @Content(
+                  mediaType = "application/json",
+                  schema =
+                      @Schema(implementation = WorkbasketSummaryPagedRepresentationModel.class))
+            }),
+      })
   @GetMapping(path = RestEndpoints.URL_WORKBASKET)
   @Transactional(readOnly = true, rollbackFor = Exception.class)
   public ResponseEntity<WorkbasketSummaryPagedRepresentationModel> getWorkbaskets(
@@ -125,6 +147,25 @@ public class WorkbasketController {
    * @throws NotAuthorizedOnWorkbasketException if the current user has no permissions to access the
    *     requested Workbasket
    */
+  @Operation(
+      summary = "Get a single Workbasket",
+      description = "This endpoint retrieves a single Workbasket.",
+      parameters = {
+        @Parameter(
+            name = "workbasketId",
+            description = "the Id of the requested Workbasket",
+            required = true)
+      },
+      responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "the requested Workbasket",
+            content = {
+              @Content(
+                  mediaType = "application/json",
+                  schema = @Schema(implementation = WorkbasketRepresentationModel.class))
+            })
+      })
   @GetMapping(path = RestEndpoints.URL_WORKBASKET_ID, produces = MediaTypes.HAL_JSON_VALUE)
   @Transactional(readOnly = true, rollbackFor = Exception.class)
   public ResponseEntity<WorkbasketRepresentationModel> getWorkbasket(
