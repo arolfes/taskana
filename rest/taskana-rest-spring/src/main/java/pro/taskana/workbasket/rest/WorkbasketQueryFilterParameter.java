@@ -1,6 +1,7 @@
 package pro.taskana.workbasket.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.beans.ConstructorProperties;
 import java.util.Optional;
 import pro.taskana.common.rest.QueryParameter;
@@ -10,16 +11,22 @@ import pro.taskana.workbasket.api.WorkbasketType;
 
 public class WorkbasketQueryFilterParameter implements QueryParameter<WorkbasketQuery, Void> {
 
-  /** Filter by the name of the Workbasket. This is an exact match. */
   @JsonProperty("name")
+  @Schema(
+      name = "name",
+      description = "Filter by the name of the Workbasket. This is an exact match.",
+      example = "WorkbasketName")
   private final String[] name;
 
-  /**
-   * Filter by the name of the Workbasket. This results in a substring search. (% is appended to the
-   * beginning and end of the requested value). Further SQL "LIKE" wildcard characters will be
-   * resolved correctly.
-   */
   @JsonProperty("name-like")
+  @Schema(
+      name = "name-like",
+      description =
+            "Filter by the name of the Workbasket. This results in a substring search. "
+                + "(% is appended to the beginning and end of the requested value). Further SQL "
+                + "\"LIKE\" wildcard characters will be resolved correctly.",
+      example = "Workbas"
+  )
   private final String[] nameLike;
 
   /** Filter by the key of the Workbasket. This is an exact match. */

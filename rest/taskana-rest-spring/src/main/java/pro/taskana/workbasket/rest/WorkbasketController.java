@@ -115,7 +115,11 @@ public class WorkbasketController {
   @Transactional(readOnly = true, rollbackFor = Exception.class)
   public ResponseEntity<WorkbasketSummaryPagedRepresentationModel> getWorkbaskets(
       HttpServletRequest request,
-      WorkbasketQueryFilterParameter filterParameter,
+      @Parameter(
+              name = "filterParameter",
+              description =
+                  "filter for workbaskets. see WorkbasketQueryFilterParameter for more information")
+          WorkbasketQueryFilterParameter filterParameter,
       WorkbasketQuerySortParameter sortParameter,
       QueryPagingParameter<WorkbasketSummary, WorkbasketQuery> pagingParameter) {
 
